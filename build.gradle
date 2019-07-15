@@ -1,0 +1,42 @@
+plugins {
+    id "org.springframework.boot" version "2.1.6.RELEASE"
+    id "java"
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+allprojects {
+    group = "com.xzb.product"
+    version = "1.0"
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: "java"
+    apply plugin: "io.spring.dependency-management"
+
+    sourceCompatibility = "1.8"
+
+    // java编译的时候缺省状态下会因为中文字符而失败
+//    [compileJava,compileTestJava,javadoc]*.options*.encoding = "UTF-8"
+
+    dependencies {
+        compile 'org.springframework.boot:spring-boot-starter-parent:2.1.6.RELEASE'
+        compile 'org.springframework.boot:spring-boot-starter-jdbc:2.1.6.RELEASE'
+//        compile 'org.springframework.boot:spring-boot-starter-log4j2:2.1.6.RELEASE'
+
+        compile 'org.springframework.boot:spring-boot-starter-actuator:2.1.6.RELEASE'
+        compile 'org.springframework.boot:spring-boot-starter-web:2.1.6.RELEASE'
+        compile 'mysql:mysql-connector-java:6.0.6'
+        compile 'org.projectlombok:lombok:1.18.8'
+
+        testCompile 'org.springframework.boot:spring-boot-starter-test:2.1.6.RELEASE'
+    }
+}
